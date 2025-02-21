@@ -36,3 +36,47 @@ body {
 .card:hover {
   transform: scale(1.05);
 }
+
+/* -------------------đăng ký-đăng nhập-------------------- */
+/* Background tổng thể */
+.login-bg {
+  background: url("../images/login-bg.jpg") no-repeat center center;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Khung đăng nhập / đăng ký */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+/* Nút bấm */
+.btn-dark {
+  background-color: black;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-dark:hover {
+  background-color: #444;
+}
+
+/* Link */
+.text-dark {
+  text-decoration: none;
+}
+
+.text-dark:hover {
+  text-decoration: underline;
+}
+

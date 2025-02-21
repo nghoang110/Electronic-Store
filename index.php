@@ -8,25 +8,61 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 
 <!-- Thanh điều hướng -->
+<?php
+session_start();
+?>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand fw-bold" href="#">Điện Tử Store</a>
+        <a class="navbar-brand fw-bold" href="index.php">ELECTRO SHOP</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#">Trang chủ</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Sản phẩm</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Giỏ hàng</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="index.php">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="products.php">Sản phẩm</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.php">Giới thiệu</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.php">Liên hệ</a></li>
+                
+                <!-- Nếu đã đăng nhập -->
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-bold text-primary" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            Xin chào, <?= $_SESSION['user_name'] ?>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="order_history.php">Lịch sử đơn hàng</a></li>
+                            <li><a class="dropdown-item" href="profile.php">Thông tin cá nhân</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger fw-bold" href="logout.php">Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold text-dark" href="cart.php">
+                            🛒 Giỏ hàng <span class="badge bg-danger">3</span> <!-- Hiển thị số sản phẩm trong giỏ -->
+                        </a>
+                    </li>
+
+                <!-- Nếu chưa đăng nhập -->
+                <?php else: ?>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold text-dark" href="login.php">ĐĂNG NHẬP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold text-dark" href="register.php">ĐĂNG KÝ</a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
 </nav>
+
 
 
 <!-- Banner chính -->
