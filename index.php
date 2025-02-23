@@ -95,27 +95,33 @@ session_start();
 
 <!-- Danh sách sản phẩm -->
 <section class="container my-5">
-    <h2 class="text-center fw-bold">Sản phẩm nổi bật</h2>
+    <h2 class="text-center fw-bold">🔥 Sản phẩm Nổi Bật</h2>
     <div class="row mt-4">
         <?php
-        $sql = "SELECT * FROM products ORDER BY created_at DESC LIMIT 4";
+        $sql = "SELECT * FROM products WHERE featured = 1 ORDER BY created_at DESC LIMIT 6";
         $result = $conn->query($sql);
-        while ($row = $result->fetch_assoc()) {
-            echo '
-            <div class="col-md-3">
-                <div class="card border-0 shadow-sm">
-                    <img src="assets/img/'.$row['image'].'" class="card-img-top" alt="'.$row['name'].'">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">'.$row['name'].'</h5>
-                        <p class="card-text">'.number_format($row['price'], 0, ',', '.').' VNĐ</p>
-                        <a href="#" class="btn btn-dark">Thêm vào giỏ</a>
+        
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '
+                <div class="col-md-4 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <img src="assets/img/'.$row['image'].'" class="card-img-top" alt="'.$row['name'].'">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">'.$row['name'].'</h5>
+                            <p class="card-text text-danger fw-bold">'.number_format($row['price'], 0, ',', '.').' VNĐ</p>
+                            <a href="product_detail.php?id='.$row['id'].'" class="btn btn-dark">Xem Chi Tiết</a>
+                        </div>
                     </div>
-                </div>
-            </div>';
+                </div>';
+            }
+        } else {
+            echo '<p class="text-center">Chưa có sản phẩm nổi bật nào.</p>';
         }
         ?>
     </div>
 </section>
+
 
 <!-- Chân trang -->
 <footer class="bg-dark text-white text-center py-3">
